@@ -1,9 +1,10 @@
 const asyncHandler = require('express-async-handler');
 
 const Post = require('../models/postModel');
+const User = require('../models/userModel');
 
-// @desc    Get comments
-// @route   GET /api/comments
+// @desc    Get posts
+// @route   GET /api/posts
 // @access  Public
 const getComment = asyncHandler(async (req, res) => {
   const posts = await Post.find();
@@ -11,8 +12,8 @@ const getComment = asyncHandler(async (req, res) => {
   res.status(200).json(posts);
 });
 
-// @desc    Post comments
-// @route   Post /api/comments
+// @desc    Post post
+// @route   Post /api/posts
 // @access  Private
 const postComment = asyncHandler(async (req, res) => {
   if (!req.body.text) {
@@ -22,13 +23,14 @@ const postComment = asyncHandler(async (req, res) => {
 
   const post = await Post.create({
     text: req.body.text,
+    user: req.user.id,
   });
 
-  res.status(200).json(post);
+  res.status(201).json(post);
 });
 
-// @desc    Update comments
-// @route   PUT /api/comments/:id
+// @desc    Update post
+// @route   PUT /api/posts/:id
 // @access  Private
 const updateComment = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.id);
@@ -38,6 +40,20 @@ const updateComment = asyncHandler(async (req, res) => {
     throw new Error('Post not found');
   }
 
+  const user = await User.findById(req.user.id);
+
+  // Check for user
+  if (!user) {
+    res.status(400);
+    throw new Error('User not found');
+  }
+
+  // Make sure logged user matches the post user
+  if (post.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error('User not authorized');
+  }
+
   const UpdatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
@@ -45,8 +61,8 @@ const updateComment = asyncHandler(async (req, res) => {
   res.status(200).json(UpdatedPost);
 });
 
-// @desc    Delete comments
-// @route   DELETE /api/comments/:id
+// @desc    Delete post
+// @route   DELETE /api/posts/:id
 // @access  Private
 const deleteComment = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.id);
@@ -54,6 +70,20 @@ const deleteComment = asyncHandler(async (req, res) => {
   if (!post) {
     res.status(400);
     throw new Error('Post not found');
+  }
+
+  const user = await User.findById(req.user.id);
+
+  // Check for user
+  if (!user) {
+    res.status(400);
+    throw new Error('User not found');
+  }
+
+  // Make sure logged user matches the post user
+  if (post.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error('User not authorized');
   }
 
   await post.remove();
