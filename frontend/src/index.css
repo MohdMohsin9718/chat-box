@@ -9,6 +9,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   height: 100vh;
+  background-color: hsl(228, 33%, 97%);
 }
 
 a {
@@ -88,12 +89,12 @@ h3 {
 
 .goals {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1fr);
   gap: 10px;
 }
 
 .goal {
-  background-color: #f4f4f4;
+  background-color: white;
   margin: 10px 0;
   padding: 20px 0 10px;
   position: relative;

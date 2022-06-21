@@ -1,0 +1,164 @@
+@import url(https://fonts.google.com/specimen/Rubik);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  background-color: hsl(223deg, 19%, 93%);
+}
+
+.container {
+  width: 60%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 60px;
+}
+.header .logo {
+  font-size: large;
+}
+.header span {
+  font-weight: bold;
+  color: hsl(238deg, 40%, 52%);
+}
+.header ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+}
+.header li {
+  margin-left: 20px;
+}
+.header li :hover {
+  color: #777;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  padding: 0 20px;
+}
+.heading p {
+  color: #828282;
+}
+
+.form,
+.content {
+  width: 70%;
+  margin: 0 auto;
+}
+.form .form-group,
+.content .form-group {
+  margin-bottom: 10px;
+}
+.form .form-group input,
+.form .form-group textarea,
+.form .form-group select,
+.content .form-group input,
+.content .form-group textarea,
+.content .form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: #000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: button;
+     -moz-appearance: button;
+          appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn :hover {
+  transform: scale(0.98);
+}
+
+.btn-block {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.post {
+  background-color: white;
+  margin: 10px 0;
+  padding: 20px;
+  position: relative;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+}
+.post .detail {
+  display: flex;
+  margin-bottom: 1em;
+}
+.post .name {
+  margin-right: 20px;
+  font-weight: bold;
+  color: hsl(238deg, 40%, 52%);
+}
+.post p {
+  color: rgb(128, 128, 128);
+  text-align: left;
+}
+.post .close {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: hsl(358deg, 79%, 66%);
+}
+
+.likesCounter {
+  width: 35px;
+  height: 70px;
+  background-color: hsl(223deg, 19%, 93%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: hsl(238deg, 40%, 52%);
+  align-items: center;
+  border-radius: 3px;
+}
+.likesCounter svg {
+  height: 0.8em;
+  width: 0.8em;
+  color: hsl(239deg, 57%, 85%);
+}
+.likesCounter svg :hover {
+  cursor: pointer;
+  color: hsl(238deg, 40%, 52%);
+}/*# sourceMappingURL=style.css.map */

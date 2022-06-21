@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { register, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -63,7 +64,7 @@ const Register = () => {
   }
 
   return (
-    <>
+    <div className='container'>
       <section className='heading'>
         <h1>
           <FaUser /> Register
@@ -124,7 +125,10 @@ const Register = () => {
           </div>
         </form>
       </section>
-    </>
+      <p>
+        Already have an account? <Link to='/login'>Login</Link>{' '}
+      </p>
+    </div>
   );
 };
 

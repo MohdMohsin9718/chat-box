@@ -9,8 +9,39 @@ const postSchema = mongoose.Schema(
     },
     text: {
       type: String,
-      required: [true, 'Please add a text value'],
+      required: [true, 'Please add text value'],
     },
+    name: {
+      type: String,
+      required: true,
+    },
+    likes: [
+      {
+        user: {
+          type: mongoose.Types.ObjectId,
+          ref: 'User',
+        },
+      },
+    ],
+    comments: [
+      {
+        user: {
+          type: mongoose.Types.ObjectId,
+          ref: 'User',
+        },
+        text: {
+          type: String,
+          required: [true, 'Please add text value'],
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+      },
+      {
+        timestamps: true,
+      },
+    ],
   },
   {
     timestamps: true,

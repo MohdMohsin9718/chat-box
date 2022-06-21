@@ -11,13 +11,15 @@ const Header = () => {
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
-    navigate('/');
+    navigate('/login');
   };
 
   return (
     <header className='header'>
       <div className='logo'>
-        <Link to='/'>ChatBox</Link>
+        <Link to='/'>
+          Chat<span>Box</span>
+        </Link>
       </div>
       <ul>
         {user ? (

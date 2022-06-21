@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { login, reset } from '../features/auth/authSlice';
 import Spinner from '../components/Spinner';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +30,6 @@ const Login = () => {
     if (isSuccess || user) {
       navigate('/');
     }
-
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
@@ -56,7 +56,7 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div className='container'>
       <section className='heading'>
         <h1>
           <FaSignInAlt /> Login
@@ -88,7 +88,6 @@ const Login = () => {
               onChange={onChange}
             />
           </div>
-
           <div className='form-group'>
             <button type='submit' className='btn btn-block'>
               Submit
@@ -96,7 +95,10 @@ const Login = () => {
           </div>
         </form>
       </section>
-    </>
+      <p>
+        Have no account? <Link to='/register'>Register</Link>{' '}
+      </p>
+    </div>
   );
 };
 
