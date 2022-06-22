@@ -216,6 +216,100 @@ const deleteComment = asyncHandler(async (req, res) => {
   });
 });
 
+// @desc    Like comment
+// @route   Put /api/posts/comment/like/:id/:commentId
+// @access  Private
+const likeComment = asyncHandler(async (req, res) => {
+  const post = await Post.findById(req.params.id);
+
+  if (!post) {
+    res.status(400);
+    throw new Error('Post not found');
+  }
+
+  if (
+    post.comments.filter(
+      comment => comment._id.toString() === req.params.commentId
+    ).length === 0
+  ) {
+    res.status(400);
+    throw new Error('Comment not found');
+  }
+
+  const commentIndex = post.comments
+    .map(comment => comment._id.toString())
+    .indexOf(req.params.commentId);
+
+  if (
+    post.comments[commentIndex].likes.filter(
+      like => like.user.toString() === req.user.id
+    ).length > 0
+  ) {
+    res.status(400);
+    throw new Error('Post already liked');
+  }
+
+  post.comments[commentIndex].likes.unshift({ user: req.user.id });
+
+  await post.save();
+
+  res.status(200).json({
+    postId: post._id,
+    comments: post.comments,
+    // commentId: post.comments[commentIndex]._id,
+    // likes: post.comments[commentIndex].likes,
+  });
+});
+
+// @desc    Unlike comment
+// @route   Put /api/posts/comment/unlike/:id/:commentId
+// @access  Private
+const unlikeComment = asyncHandler(async (req, res) => {
+  const post = await Post.findById(req.params.id);
+
+  if (!post) {
+    res.status(400);
+    throw new Error('Post not found');
+  }
+
+  if (
+    post.comments.filter(
+      comment => comment._id.toString() === req.params.commentId
+    ).length === 0
+  ) {
+    res.status(400);
+    throw new Error('Comment not found');
+  }
+
+  const commentIndex = post.comments
+    .map(comment => comment._id.toString())
+    .indexOf(req.params.commentId);
+
+  if (
+    post.comments[commentIndex].likes.filter(
+      like => like.user.toString() === req.user.id
+    ).length === 0
+  ) {
+    res.status(400);
+    throw new Error('Post has yet not been liked');
+  }
+
+  const removeIndex = post.comments[commentIndex].likes
+    .map(like => like.user.toString())
+    .indexOf(req.user.id);
+
+  post.comments[commentIndex].likes.splice(removeIndex, 1);
+
+  await post.save();
+
+  res.status(200).json({
+    postId: post._id,
+    comments: post.comments,
+    // commentId: post.comments[commentIndex]._id,
+    // likes: post.comments[commentIndex].likes,
+  });
+});
+
 module.exports = {
   getPost,
   uploadPost,
@@ -225,4 +319,6 @@ module.exports = {
   unlikePost,
   uploadComment,
   deleteComment,
+  likeComment,
+  unlikeComment,
 };

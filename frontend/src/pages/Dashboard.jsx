@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Spinner from '../components/Spinner';
 import { getPosts, uploadPost } from '../features/posts/postSlice';
+
 import PostContainer from '../components/PostContainer';
-// import { toast } from 'react-toastify';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -13,9 +12,7 @@ const Dashboard = () => {
   const [text, setText] = useState('');
 
   const { user } = useSelector(state => state.auth);
-  const { posts, isLoadind, isError, message } = useSelector(
-    state => state.posts
-  );
+  const { posts, isError, message } = useSelector(state => state.posts);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -39,27 +36,22 @@ const Dashboard = () => {
     }
   }, [user, navigate, isError, message, dispatch]);
 
-  if (isLoadind) {
-    return <Spinner />;
-  }
-
   return (
     <>
       <section className='heading'>
         <h1>Welcome {user && user.name}</h1>
         <p>Posts Dashboard</p>
       </section>
-      <section className='content'>
-        {posts.length > 0 ? (
+      <section>
+        <div className='content'>
           <div className='posts'>
             {posts.map(post => (
               <PostContainer key={post._id} post={post} />
             ))}
           </div>
-        ) : (
-          <h3>There is no posts.</h3>
-        )}
+        </div>
       </section>
+
       <section className='form'>
         <form onSubmit={onSubmit}>
           <div className='form-group'>
@@ -79,5 +71,4 @@ const Dashboard = () => {
     </>
   );
 };
-
 export default Dashboard;

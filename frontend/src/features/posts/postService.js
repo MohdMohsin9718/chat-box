@@ -62,11 +62,72 @@ const unlikePost = async (postId, token) => {
   return response.data;
 };
 
+const uploadComment = async ({ id, data }, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.put(API_URL + 'comment/' + id, data, config);
+
+  return response.data;
+};
+
+const deleteComment = async ({ postId, commentId }, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.delete(
+    API_URL + 'comment/' + postId + '/' + commentId,
+    config
+  );
+
+  return response.data;
+};
+
+const likeComment = async ({ postId, commentId }, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.put(
+    API_URL + 'comment/like/' + postId + '/' + commentId,
+    '',
+    config
+  );
+
+  return response.data;
+};
+
+const unlikeComment = async ({ postId, commentId }, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.put(
+    API_URL + 'comment/unlike/' + postId + '/' + commentId,
+    '',
+    config
+  );
+
+  return response.data;
+};
+
 const postService = {
   getPosts,
   uploadPost,
   deletePost,
   likePost,
   unlikePost,
+  uploadComment,
+  deleteComment,
+  likeComment,
+  unlikeComment,
 };
 export default postService;

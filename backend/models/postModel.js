@@ -37,9 +37,18 @@ const postSchema = mongoose.Schema(
           type: String,
           required: true,
         },
-      },
-      {
-        timestamps: true,
+        likes: [
+          {
+            user: {
+              type: mongoose.Types.ObjectId,
+              ref: 'User',
+            },
+          },
+        ],
+        date: {
+          type: Date,
+          default: Date.now,
+        },
       },
     ],
   },

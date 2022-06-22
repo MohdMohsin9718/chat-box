@@ -6,12 +6,13 @@
 }
 
 body {
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
   background-color: hsl(223deg, 19%, 93%);
+  height: 100vh;
 }
 
 .container {
-  width: 60%;
+  width: 100%;
   max-width: 960px;
   margin: 0 auto;
   padding: 0 20px;
@@ -95,8 +96,8 @@ a {
   cursor: pointer;
   text-align: center;
   -webkit-appearance: button;
-     -moz-appearance: button;
-          appearance: button;
+  -moz-appearance: button;
+  appearance: button;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,4 +162,4 @@ a {
 .likesCounter svg :hover {
   cursor: pointer;
   color: hsl(238deg, 40%, 52%);
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */
