@@ -10,6 +10,20 @@ body {
   font-family: 'Rubik', sans-serif;
   background-color: hsl(223, 19%, 93%);
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+h4 {
+  font-weight: normal;
+
+  a {
+    color: hsl(238, 40%, 52%);
+  }
+}
+
 .container {
   width: 100%;
   max-width: 960px;
@@ -18,17 +32,12 @@ body {
   text-align: center;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid hsl(238, 40%, 52%);
   margin-bottom: 60px;
 
   .logo {
@@ -63,6 +72,7 @@ a {
 
   p {
     color: #828282;
+    text-align: center;
   }
 }
 
@@ -85,6 +95,10 @@ a {
       font-family: inherit;
     }
   }
+}
+
+.post-form {
+  width: 63%;
 }
 
 .btn {
@@ -120,32 +134,82 @@ a {
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr 9fr;
+}
 
-  .detail {
-    display: flex;
-    margin-bottom: 1em;
-  }
+.date {
+  color: rgb(128, 128, 128);
+}
 
-  .name {
-    margin-right: 20px;
-    font-weight: bold;
-    color: hsl(238, 40%, 52%);
-  }
+.detail {
+  display: flex;
+  margin-bottom: 1em;
+}
 
-  p {
-    color: rgb(128, 128, 128);
-    text-align: left;
-  }
+.name {
+  margin-right: 20px;
+  font-weight: bold;
+  color: hsl(238, 40%, 52%);
+}
 
-  .close {
-    position: absolute;
-    top: 18px;
-    right: 15px;
-    cursor: pointer;
-    border: none;
-    background: none;
-    color: hsl(358, 79%, 66%);
+p {
+  color: rgb(128, 128, 128);
+  text-align: left;
+}
+
+.reply-delete-box {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: hsl(358, 79%, 66%);
+}
+
+.delete {
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: hsl(358, 79%, 66%);
+}
+
+.reply {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: hsl(238, 40%, 52%);
+  margin-right: 10px;
+}
+
+.comments {
+  display: grid;
+  grid-template-columns: 50px auto;
+
+  form {
+    width: 110%;
+    margin-left: 5px;
   }
+}
+
+.line {
+  border: 1px solid hsl(239, 57%, 85%);
+  width: 2px;
+  height: 90%;
+  margin: auto 0 auto auto;
+  border-radius: 50%;
+}
+
+.comment {
+  background-color: white;
+  width: 90%;
+  margin: 10px 0 10px auto;
+  padding: 20px;
+  position: relative;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  justify-content: flex-end;
 }
 
 .likesCounter {

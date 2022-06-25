@@ -6,6 +6,7 @@ import {
   likeComment,
   unlikeComment,
 } from '../features/posts/postSlice';
+import moment from 'moment';
 
 const CommentContainer = ({ comment, postId }) => {
   const dispatch = useDispatch();
@@ -15,18 +16,11 @@ const CommentContainer = ({ comment, postId }) => {
     commentId: comment._id,
   };
 
-  // const delCom = () => {
-  //   const data = {
-  //     postId,
-  //     commentId: comment._id,
-  //   };
-  //   dispatch(deleteComment(data));
-  // };
-
+  moment().format();
   const { user } = useSelector(state => state.auth);
   return (
     <div className='container'>
-      <div className='post'>
+      <div className='comment'>
         <div className='likesCounter'>
           <FaPlus onClick={() => dispatch(likeComment(data))} />
           {comment.likes.length}
@@ -36,19 +30,21 @@ const CommentContainer = ({ comment, postId }) => {
           <div className='detail'>
             <div className='name'>{comment.name}</div>
             <div className='date'>
-              {new Date(comment.date).toLocaleString('en-US')}
+              {moment(new Date(comment.date).toLocaleString('en-US')).fromNow()}
             </div>
           </div>
           <p>{comment.text}</p>
         </div>
         {user && user._id === comment.user ? (
-          <button
-            onClick={() => dispatch(deleteComment(data))}
-            className='close'
-          >
-            <FaTrash />
-            <b> Delete</b>
-          </button>
+          <div className='reply-delete-box'>
+            <button
+              onClick={() => dispatch(deleteComment(data))}
+              className='delete'
+            >
+              <FaTrash />
+              <b> Delete</b>
+            </button>
+          </div>
         ) : (
           <></>
         )}

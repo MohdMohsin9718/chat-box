@@ -5,13 +5,15 @@ import {
   unlikePost,
   uploadComment,
 } from '../features/posts/postSlice';
-import { FaTrash, FaPlus, FaMinus } from 'react-icons/fa';
+import { FaTrash, FaPlus, FaMinus, FaReply } from 'react-icons/fa';
 import { useEffect } from 'react';
 import CommentContainer from './CommentContainer';
 import { useState } from 'react';
+import moment from 'moment';
 
 const PostContainer = ({ post }) => {
   const [text, setText] = useState('');
+  const [comments, setcomments] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -36,6 +38,8 @@ const PostContainer = ({ post }) => {
     setText('');
   };
 
+  moment().format();
+
   return (
     <div className='container'>
       <div className='post'>
@@ -48,48 +52,70 @@ const PostContainer = ({ post }) => {
           <div className='detail'>
             <div className='name'>{post.name}</div>
             <div className='date'>
-              {new Date(post.createdAt).toLocaleString('en-US')}
+              {moment(
+                new Date(post.createdAt).toLocaleString('en-US')
+              ).fromNow()}
             </div>
           </div>
           <p>{post.text}</p>
         </div>
         {user && user._id === post.user ? (
-          <button
-            onClick={() => dispatch(deletePost(post._id))}
-            className='close'
-          >
-            <FaTrash />
-            <b> Delete</b>
-          </button>
+          <div className='reply-delete-box'>
+            <button
+              onClick={() => dispatch(deletePost(post._id))}
+              className='delete'
+            >
+              <FaTrash />
+              <b> Delete</b>
+            </button>
+            <button className='reply' onClick={() => setcomments(!comments)}>
+              <FaReply />
+              <b> Reply</b>
+            </button>
+          </div>
         ) : (
-          <></>
+          <div className='reply-delete-box'>
+            <button className='reply' onClick={() => setcomments(!comments)}>
+              <FaReply />
+              <b> Reply</b>
+            </button>
+          </div>
         )}
       </div>
-      <div className='comments'>
-        {post.comments.map(comment => (
-          <CommentContainer
-            key={comment._id}
-            comment={comment}
-            postId={post._id}
-          />
-        ))}
-        <section className='form'>
-          <form onSubmit={onSubmit}>
-            <div className='form-group'>
-              <input
-                type='text'
-                name='text'
-                value={text}
-                id='text'
-                onChange={e => setText((e.target.name = e.target.value))}
+
+      {comments ? (
+        <div className='comments'>
+          <div className='line'></div>
+          <div>
+            {post.comments.map(comment => (
+              <CommentContainer
+                key={comment._id}
+                comment={comment}
+                postId={post._id}
               />
-              <button className='btn btn-block' type='submit'>
-                Reply
-              </button>
-            </div>
-          </form>
-        </section>
-      </div>
+            ))}
+          </div>
+          <div></div>
+          <section className='form'>
+            <form onSubmit={onSubmit}>
+              <div className='form-group'>
+                <input
+                  type='text'
+                  name='text'
+                  value={text}
+                  id='text'
+                  onChange={e => setText((e.target.name = e.target.value))}
+                />
+                <button className='btn btn-block' type='submit'>
+                  Reply
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

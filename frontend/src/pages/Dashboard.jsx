@@ -40,7 +40,6 @@ const Dashboard = () => {
     <>
       <section className='heading'>
         <h1>Welcome {user && user.name}</h1>
-        <p>Posts Dashboard</p>
       </section>
       <section>
         <div className='content'>
@@ -52,7 +51,7 @@ const Dashboard = () => {
         </div>
       </section>
 
-      <section className='form'>
+      <section className='form post-form'>
         <form onSubmit={onSubmit}>
           <div className='form-group'>
             <input

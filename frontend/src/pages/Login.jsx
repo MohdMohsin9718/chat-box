@@ -95,9 +95,11 @@ const Login = () => {
           </div>
         </form>
       </section>
-      <p>
-        Have no account? <Link to='/register'>Register</Link>{' '}
-      </p>
+      <section>
+        <h4>
+          Have no account? <Link to='/register'>Register</Link>
+        </h4>
+      </section>
     </div>
   );
 };

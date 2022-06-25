@@ -6,9 +6,20 @@
 }
 
 body {
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
   background-color: hsl(223deg, 19%, 93%);
-  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+h4 {
+  font-weight: normal;
+}
+h4 a {
+  color: hsl(238deg, 40%, 52%);
 }
 
 .container {
@@ -19,17 +30,12 @@ body {
   text-align: center;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid hsl(238deg, 40%, 52%);
   margin-bottom: 60px;
 }
 .header .logo {
@@ -60,6 +66,7 @@ a {
 }
 .heading p {
   color: #828282;
+  text-align: center;
 }
 
 .form,
@@ -85,6 +92,10 @@ a {
   font-family: inherit;
 }
 
+.post-form {
+  width: 63%;
+}
+
 .btn {
   padding: 10px 20px;
   border: 1px solid #000;
@@ -96,8 +107,8 @@ a {
   cursor: pointer;
   text-align: center;
   -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
+     -moz-appearance: button;
+          appearance: button;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,20 +131,28 @@ a {
   display: grid;
   grid-template-columns: 1fr 9fr;
 }
-.post .detail {
+
+.date {
+  color: rgb(128, 128, 128);
+}
+
+.detail {
   display: flex;
   margin-bottom: 1em;
 }
-.post .name {
+
+.name {
   margin-right: 20px;
   font-weight: bold;
   color: hsl(238deg, 40%, 52%);
 }
-.post p {
+
+p {
   color: rgb(128, 128, 128);
   text-align: left;
 }
-.post .close {
+
+.reply-delete-box {
   position: absolute;
   top: 18px;
   right: 15px;
@@ -141,6 +160,51 @@ a {
   border: none;
   background: none;
   color: hsl(358deg, 79%, 66%);
+}
+
+.delete {
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: hsl(358deg, 79%, 66%);
+}
+
+.reply {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: hsl(238deg, 40%, 52%);
+  margin-right: 10px;
+}
+
+.comments {
+  display: grid;
+  grid-template-columns: 50px auto;
+}
+.comments form {
+  width: 110%;
+  margin-left: 5px;
+}
+
+.line {
+  border: 1px solid hsl(239deg, 57%, 85%);
+  width: 2px;
+  height: 90%;
+  margin: auto 0 auto auto;
+  border-radius: 50%;
+}
+
+.comment {
+  background-color: white;
+  width: 90%;
+  margin: 10px 0 10px auto;
+  padding: 20px;
+  position: relative;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  justify-content: flex-end;
 }
 
 .likesCounter {
@@ -162,4 +226,4 @@ a {
 .likesCounter svg :hover {
   cursor: pointer;
   color: hsl(238deg, 40%, 52%);
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

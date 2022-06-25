@@ -125,9 +125,11 @@ const Register = () => {
           </div>
         </form>
       </section>
-      <p>
-        Already have an account? <Link to='/login'>Login</Link>{' '}
-      </p>
+      <section>
+        <h4>
+          Already have an account? <Link to='/login'>Login</Link>{' '}
+        </h4>
+      </section>
     </div>
   );
 };
